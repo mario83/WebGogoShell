@@ -1,0 +1,27 @@
+.web-gogo-shell-portlet .panel {
+  font-size: 13px;
+  font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; }
+  .web-gogo-shell-portlet .panel .panel-body {
+    height: 450px;
+    overflow-x: hidden;
+    overflow-y: visible; }
+  .web-gogo-shell-portlet .panel .input-command {
+    border: none;
+    color: transparent;
+    background: transparent;
+    outline: none; }
+
+.web-gogo-shell-portlet .blink_me {
+  background-color: #29353D;
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; }
+
+@keyframes blinker {
+  0% {
+    opacity: 1.0; }
+  50% {
+    opacity: 0.0; }
+  100% {
+    opacity: 1.0; } }
