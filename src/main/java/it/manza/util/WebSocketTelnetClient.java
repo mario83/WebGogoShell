@@ -9,8 +9,12 @@ import javax.websocket.RemoteEndpoint.Basic;
 
 import org.apache.commons.net.telnet.TelnetClient;
 
+import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.util.PropsUtil;
+import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.StringPool;
 
 /**
  * @author mario anzà
@@ -22,13 +26,13 @@ public class WebSocketTelnetClient implements Runnable {
 
 		this.remote = remote;
 
-		String remoteip = "localhost";
-
-		int remoteport = 11311;
+		String[] gogoShellAddress =
+			PropsUtil.get(PropsKeys.MODULE_FRAMEWORK_PROPERTIES + "osgi.console")
+				.split(StringPool.COLON);
 
 		tc = new TelnetClient();
 		try {
-			tc.connect(remoteip, remoteport);
+			tc.connect(gogoShellAddress[0], Integer.valueOf(gogoShellAddress[1]));
 			out = new PrintStream(tc.getOutputStream());
 		}
 		catch (Exception e) {
@@ -52,7 +56,7 @@ public class WebSocketTelnetClient implements Runnable {
 			do {
 				ret_read = instr.read(buff);
 				if (ret_read > 0) {
-					String s = new String(buff, 0, ret_read);					
+					String s = new String(buff, 0, ret_read);
 					remote.sendText(s.replaceAll("\\n", "<br>"));
 				}
 			}
