@@ -68,7 +68,6 @@ function sendCommand(event){
 	if(event.key.length == 1) {
 		websocketModule.websocketSend(event.key);
 		event.target.value = "";
-		console.log("post "+event.key);
 	}
 }
 
