@@ -3,7 +3,7 @@
 
 <div class="panel" tabindex="0" autofocus>
 	<div class="panel-body">
-		<span id="gogo-container"></span><span class="blink_me hidden">&nbsp;</span>
+		<pre id="gogo-container"></pre><span class="blink_me hidden">&nbsp;</span>
 	</div>
 	<div class="panel-footer">
 		<aui:button-row>
@@ -42,7 +42,8 @@
 		}).focusin(function() {
 			$(".blink_me" ).removeClass("hidden");
 		});
-		$("[autofocus]").on("keyup",sendCommand).on("keydown",sendAutocomplete);
+		$("[autofocus]").on("keyup",keyUpEvent).on("keydown",keyDownEvent).bind("paste", pastEvent);
+		
 		setFocus();
 	});
 </script>
