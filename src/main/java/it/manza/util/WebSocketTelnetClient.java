@@ -9,11 +9,10 @@ import javax.websocket.RemoteEndpoint.Basic;
 
 import org.apache.commons.net.telnet.TelnetClient;
 
-import com.liferay.portal.kernel.configuration.Filter;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.PropsKeys;
+import com.liferay.portal.kernel.util.PropsUtil;
 import com.liferay.portal.kernel.util.StringPool;
 
 /**
@@ -31,6 +30,7 @@ public class WebSocketTelnetClient implements Runnable {
 				.split(StringPool.COLON);
 
 		tc = new TelnetClient();
+		
 		try {
 			tc.connect(gogoShellAddress[0], Integer.valueOf(gogoShellAddress[1]));
 			out = new PrintStream(tc.getOutputStream());
@@ -50,14 +50,15 @@ public class WebSocketTelnetClient implements Runnable {
 		InputStream instr = tc.getInputStream();
 
 		try {
-			byte[] buff = new byte[1024];
+			byte[] buff = new byte[8192]; //according to default org.apache.tomcat.websocket.textBufferSize
 			int ret_read = 0;
 
 			do {
 				ret_read = instr.read(buff);
 				if (ret_read > 0) {
 					String s = new String(buff, 0, ret_read);
-					remote.sendText(s.replaceAll("\\n", "<br>"));
+//					remote.sendText(s.replaceAll("\\n", "<br>"));
+					remote.sendText(s);
 				}
 			}
 			while (ret_read >= 0);

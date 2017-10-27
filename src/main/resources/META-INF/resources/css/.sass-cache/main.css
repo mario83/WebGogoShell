@@ -2,8 +2,8 @@
   font-size: 13px;
   font-family: Courier New,Courier,Lucida Sans Typewriter,Lucida Typewriter,monospace; }
   .web-gogo-shell-portlet .panel .panel-body {
-    height: 450px;
-    overflow-x: hidden;
+    height: 80vh;
+    overflow-x: auto;
     overflow-y: visible; }
   .web-gogo-shell-portlet .panel .input-command {
     border: none;
@@ -17,6 +17,13 @@
   animation-duration: 1s;
   animation-timing-function: linear;
   animation-iteration-count: infinite; }
+
+.web-gogo-shell-portlet #gogo-container {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: none; }
 
 @keyframes blinker {
   0% {
