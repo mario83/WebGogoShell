@@ -8,8 +8,7 @@
 	<div class="panel-footer">
 		<aui:button-row>
 			<aui:button value="gogo-clear" onClick="$('#gogo-container').html('');setFocus();"/>
-			<aui:button value="gogo-copy" onClick="copyToClipboard();setFocus();"/>
-			<aui:button value="gogo-copy-selected" onClick="copySelectedToClipboard();setFocus();"/>		
+			<aui:button value="gogo-copy" onClick="copyToClipboard();setFocus();"/>	
 		</aui:button-row>
 	</div>
 

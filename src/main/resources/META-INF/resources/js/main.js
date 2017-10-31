@@ -56,25 +56,6 @@ var websocketModule = (function () {
 	}
 })();
 
-function getSelectedText(el) {
-    if (typeof el.selectionStart == "number") {
-        return el.value.slice(el.selectionStart, el.selectionEnd);
-    } else if (typeof document.selection != "undefined") {
-        var range = document.selection.createRange();
-        if (range.parentElement() == el) {
-            return range.text;
-        }
-    }
-    return "";
-}
-
-function copySelectedToClipboard() {
-	var $temp = $("<textarea>");
-	$("body").append($temp);
-  $temp.val(getSelectedText($("#gogo-container")));
-  document.execCommand("copy");
-  $temp.remove();
-}
 
 function copyToClipboard() {
   var $temp = $("<textarea>");
